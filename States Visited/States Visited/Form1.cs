@@ -190,7 +190,7 @@ namespace StatesVisited
             string[] states = new string[51];
 
 
-            if (!Directory.Exists(dir))  // if it doesn't exist, create
+            if (!Directory.Exists(dir))  // if the directory doesn't exist, create it and add the fire
             {
                 Directory.CreateDirectory(dir);
                 for (int i = 0; i < 51; i++)
@@ -200,6 +200,14 @@ namespace StatesVisited
                 System.IO.File.WriteAllLines(Path.Combine(dir, "states.visited"), states);
 
                 
+            }
+            if (!File.Exists(@path)) // if the file doesn't exist but the directory does, create it. This should not happen unless the user deletes the file
+            {
+                for (int i = 0; i < 51; i++)
+                {
+                    states[i] = "0000";
+                }
+                System.IO.File.WriteAllLines(Path.Combine(dir, "states.visited"), states);
             }
             states = File.ReadLines(path).ToArray();
 
