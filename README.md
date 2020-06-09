@@ -22,3 +22,5 @@ As of right now, there is no installer. I may add one in the future, but for the
 ### How is This Project Licensed?
 States Visited is licenced under GNU GPL 3.0.
 
+### References
+* The icon for this application was derived from: https://upload.wikimedia.org/wikipedia/commons/8/88/United-states_flag_icon_round.svg
