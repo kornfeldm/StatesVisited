@@ -117,8 +117,21 @@ namespace StatesVisited
             //Ensure only one thread of this function can run and the global array isn't being edited
             editor.WaitOne();
 
-            string path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDoc‌​uments), "States_Visited", "states.visited");
-            g_states = File.ReadLines(path).ToArray();
+            try
+            {
+                string path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDoc‌​uments), "States_Visited", "states.visited");
+                g_states = File.ReadLines(path).ToArray();
+            }
+            //If the file does not exist
+            catch(FileNotFoundException)
+            {
+                System.Windows.Forms.MessageBox.Show("Data file not found. This issue may be resolved by restarting this application.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            //If the directory does not exist
+            catch(DirectoryNotFoundException)
+            {
+                System.Windows.Forms.MessageBox.Show("Save data directory not found. This issue may be resolved by restarting this application.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             int states_visited = 0;
 
 
@@ -387,9 +400,9 @@ namespace StatesVisited
         {
             SaveFileDialog savefile = new SaveFileDialog();
             // set a default file name
-            savefile.FileName = "MyStates.StatesVisited";
+            savefile.FileName = "MyStates.SVisit";
             // set filters - this can be done in properties as well
-            savefile.Filter = "StatesVisited File (*.StatesVisited)|*.StatesVisited";
+            savefile.Filter = "StatesVisited File (*.SVisit)|*.SVisit";
 
             //If a file is saved
             if (savefile.ShowDialog() == DialogResult.OK)
