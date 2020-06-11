@@ -125,7 +125,7 @@
             // updateAndSaveToolStripMenuItem
             // 
             this.updateAndSaveToolStripMenuItem.Name = "updateAndSaveToolStripMenuItem";
-            this.updateAndSaveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.updateAndSaveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
             this.updateAndSaveToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
             this.updateAndSaveToolStripMenuItem.Text = "Update";
             this.updateAndSaveToolStripMenuItem.Click += new System.EventHandler(this.UpdateAndSaveToolStripMenuItem_Click);
@@ -187,13 +187,15 @@
             // statesVisitedFileToolStripMenuItem
             // 
             this.statesVisitedFileToolStripMenuItem.Name = "statesVisitedFileToolStripMenuItem";
-            this.statesVisitedFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.statesVisitedFileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.statesVisitedFileToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
             this.statesVisitedFileToolStripMenuItem.Text = "StatesVisited File";
             this.statesVisitedFileToolStripMenuItem.Click += new System.EventHandler(this.statesVisitedFileToolStripMenuItem_Click);
             // 
             // impToolStripMenuItem
             // 
             this.impToolStripMenuItem.Name = "impToolStripMenuItem";
+            this.impToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.impToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
             this.impToolStripMenuItem.Text = "Import";
             this.impToolStripMenuItem.Click += new System.EventHandler(this.impToolStripMenuItem_Click);
@@ -207,7 +209,8 @@
             // cSVToolStripMenuItem
             // 
             this.cSVToolStripMenuItem.Name = "cSVToolStripMenuItem";
-            this.cSVToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cSVToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.S)));
+            this.cSVToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
             this.cSVToolStripMenuItem.Text = "CSV";
             this.cSVToolStripMenuItem.Click += new System.EventHandler(this.cSVToolStripMenuItem_Click);
             // 
