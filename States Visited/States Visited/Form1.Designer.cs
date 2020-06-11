@@ -38,11 +38,16 @@
             this.statesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addNewStateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateAndSaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.impToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statesVisitedFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitStatesVisitedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listView1 = new System.Windows.Forms.ListView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editYearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -102,6 +107,8 @@
             this.statesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addNewStateToolStripMenuItem,
             this.updateAndSaveToolStripMenuItem,
+            this.impToolStripMenuItem,
+            this.exportDataToolStripMenuItem,
             this.quitStatesVisitedToolStripMenuItem});
             this.statesToolStripMenuItem.Name = "statesToolStripMenuItem";
             this.statesToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
@@ -118,10 +125,44 @@
             // updateAndSaveToolStripMenuItem
             // 
             this.updateAndSaveToolStripMenuItem.Name = "updateAndSaveToolStripMenuItem";
-            this.updateAndSaveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.updateAndSaveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
             this.updateAndSaveToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
             this.updateAndSaveToolStripMenuItem.Text = "Update";
             this.updateAndSaveToolStripMenuItem.Click += new System.EventHandler(this.UpdateAndSaveToolStripMenuItem_Click);
+            // 
+            // impToolStripMenuItem
+            // 
+            this.impToolStripMenuItem.Name = "impToolStripMenuItem";
+            this.impToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.impToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.impToolStripMenuItem.Text = "Import";
+            this.impToolStripMenuItem.Click += new System.EventHandler(this.impToolStripMenuItem_Click);
+            // 
+            // exportDataToolStripMenuItem
+            // 
+            this.exportDataToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statesVisitedFileToolStripMenuItem,
+            this.cSVToolStripMenuItem});
+            this.exportDataToolStripMenuItem.Name = "exportDataToolStripMenuItem";
+            this.exportDataToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.exportDataToolStripMenuItem.Text = "Export As...";
+            this.exportDataToolStripMenuItem.Click += new System.EventHandler(this.exportDataToolStripMenuItem_Click);
+            // 
+            // statesVisitedFileToolStripMenuItem
+            // 
+            this.statesVisitedFileToolStripMenuItem.Name = "statesVisitedFileToolStripMenuItem";
+            this.statesVisitedFileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.statesVisitedFileToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.statesVisitedFileToolStripMenuItem.Text = "StatesVisited File";
+            this.statesVisitedFileToolStripMenuItem.Click += new System.EventHandler(this.statesVisitedFileToolStripMenuItem_Click);
+            // 
+            // cSVToolStripMenuItem
+            // 
+            this.cSVToolStripMenuItem.Name = "cSVToolStripMenuItem";
+            this.cSVToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.S)));
+            this.cSVToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.cSVToolStripMenuItem.Text = "CSV";
+            this.cSVToolStripMenuItem.Click += new System.EventHandler(this.cSVToolStripMenuItem_Click);
             // 
             // quitStatesVisitedToolStripMenuItem
             // 
@@ -135,6 +176,7 @@
             // 
             this.listView1.AutoArrange = false;
             this.listView1.ContextMenuStrip = this.contextMenuStrip1;
+            this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(17, 186);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
@@ -165,6 +207,12 @@
             this.deleteToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.deleteToolStripMenuItem.Text = "Remove";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "MyStates";
+            this.openFileDialog1.Filter = "StatesVisited File (*.SVisit)|*.SVisit";
+            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
             // Form1
             // 
@@ -208,6 +256,11 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editYearToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportDataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem statesVisitedFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem impToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.ToolStripMenuItem cSVToolStripMenuItem;
     }
 }
 
