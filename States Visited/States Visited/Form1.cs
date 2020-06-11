@@ -376,5 +376,114 @@ namespace StatesVisited
         private void ContextMenuStrip1_Opening(object sender, CancelEventArgs e)
         {
         }
+
+        private void exportDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        //Export as a States Visited File
+        private void statesVisitedFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog savefile = new SaveFileDialog();
+            // set a default file name
+            savefile.FileName = "MyStates.StatesVisited";
+            // set filters - this can be done in properties as well
+            savefile.Filter = "StatesVisited File (*.StatesVisited)|*.StatesVisited";
+
+            //If a file is saved
+            if (savefile.ShowDialog() == DialogResult.OK)
+            {
+                //Copy each line of the data file to the file saved to export it
+                using (StreamWriter sw = new StreamWriter(savefile.FileName))
+                {
+                    string path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDoc‌​uments), "States_Visited", "states.visited");
+                    g_states = File.ReadLines(path).ToArray();
+                    foreach (string line in g_states)
+                    {
+                        sw.WriteLine(line);
+                    }
+                }
+
+            }
+
+        }
+
+        //Import a States Visited File
+        private void impToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //We do not want this running at the same time as Update() as this can cause race conditions
+            editor.WaitOne();
+
+            //Confirm with user
+            var confirm = System.Windows.Forms.MessageBox.Show("Your current data will be replaced. Do you want to continue?", "Are You Sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirm == DialogResult.Yes)
+            {
+                //Load the file and make sure it's good
+                DialogResult result = openFileDialog1.ShowDialog(); 
+                if (result == DialogResult.OK)
+                {
+                    //Try to copy the data
+                    try
+                    {
+                        string file = openFileDialog1.FileName;
+                        g_states = File.ReadLines(file).ToArray();
+                        string path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDoc‌​uments), "States_Visited", "states.visited");
+                        //Clear the app file (https://stackoverflow.com/questions/4999988/how-can-i-clear-the-content-of-a-file)
+                        File.WriteAllText(path, string.Empty);
+                        //Write the new data to the app file
+                        using (StreamWriter sw = new StreamWriter(path))
+                        {
+                            foreach (string line in g_states)
+                            {
+                                sw.WriteLine(line);
+                            }
+                        }
+
+                    }
+                    catch (IOException)
+                    {
+                        System.Windows.Forms.MessageBox.Show("Error loading file", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                //Release Mutex - We are not editing the global array anymore and Update() is going to need the mutex to continue
+                editor.ReleaseMutex();
+                //Update the screen to reflact any changes
+                Update();
+            }
+            
+        }
+
+        //Export the data as a CVS
+        //Source used for CSV formatting https://www.computerhope.com/issues/ch001356.htm
+        private void cSVToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog savefile = new SaveFileDialog();
+            // set a default file name
+            savefile.FileName = "MyStates.csv";
+            // set filters - this can be done in properties as well
+            savefile.Filter = "Comma Separated Values (*.csv)|*.csv";
+            //If a file is saved
+            if (savefile.ShowDialog() == DialogResult.OK)
+            {
+                //Write the header followed by all the states
+                using (StreamWriter sw = new StreamWriter(savefile.FileName))
+                {
+                    sw.WriteLine("State/Territory,Year");
+                    for (int i = 0; i < 51; i++)
+                    {
+                        if (g_states[i] != "0000")
+                        {
+                            sw.WriteLine(StateMapperReverse[i] + "," + g_states[i]);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+
+        }
     }
 }
